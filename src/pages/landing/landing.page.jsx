@@ -2,11 +2,12 @@ import React from 'react';
 import Navbar from "../../components/header/header.component";
 import {makeStyles} from "@material-ui/core/styles";
 import {COLORS, FONTS, SIZES} from '../../constants/theme/theme.constants';
+import CheckboxGroup from "../../components/checkbox/checkbox.component";
 
 
 const useStyles = makeStyles((theme) => ({
     root: {
-       margin: 0,
+       margin: SIZES.noPadding,
        backgroundColor: COLORS.background,
 
     },
@@ -39,6 +40,10 @@ const useStyles = makeStyles((theme) => ({
        fontWeight: SIZES.normalWeight,
        padding: SIZES.noPadding,
     },
+    airlineGrid: {
+        marginLeft: SIZES.paddingHorizontal,
+        marginRight: SIZES.paddingHorizontal,
+    }
 }));
 
 const Landing = () => {
@@ -56,8 +61,12 @@ const Landing = () => {
             <div className={classes.filterGroup}>
                 <h3 className={classes.subHeader}>Filter by Alliances</h3>
                 <div className={classes.checkGroup}>
-
+                     <CheckboxGroup />
                 </div>
+            </div>
+
+            <div className={classes.airlineGrid}>
+
             </div>
         </div>
     )
