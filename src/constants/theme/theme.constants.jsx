@@ -15,12 +15,12 @@ export const SIZES = {
     big: '16px',
     small: '14px',
 
-
+    // font weight
     headerWeight: 900,
     normalWeight: 'bold',
     smallWeight: '',
 
-
+    // padding & margin numbers
     paddingHorizontal: '94px',
     paddingConstant: '16px',
 
@@ -29,8 +29,12 @@ export const SIZES = {
     gap67: 67,
     gap73: 73,
     gap56: 56,
-
+    gap10: 40,
     noPadding: 0,
+    padding100: 100,
+
+    // grid layout
+    gridWrapper: '1248px',
 };
 
 

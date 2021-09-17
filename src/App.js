@@ -1,7 +1,6 @@
 import Routes from "./routes/index.routes";
 import Helvetica from './constants/fonts/helveticaNeue/Helvetica Neue LTW0697BlkCnObl.ttf';
 import {createMuiTheme,
-  Theme,
   ThemeProvider
 } from "@material-ui/core/styles";
 import {CssBaseline} from "@material-ui/core";

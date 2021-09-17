@@ -3,6 +3,8 @@ import Navbar from "../../components/header/header.component";
 import {makeStyles} from "@material-ui/core/styles";
 import {COLORS, FONTS, SIZES} from '../../constants/theme/theme.constants';
 import CheckboxGroup from "../../components/checkbox/checkbox.component";
+import Grid from '@mui/material/Grid';
+import AirlineCards from '../../components/airlineCards/airline.component';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -25,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     },
     filterGroup: {
        marginTop: SIZES.gap6,
-       marginBottom: SIZES.gap56,
+       marginBottom: SIZES.gap10 + 6,
        marginLeft: SIZES.paddingHorizontal,
        marginRight: SIZES.paddingHorizontal,
     },
@@ -43,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
     airlineGrid: {
         marginLeft: SIZES.paddingHorizontal,
         marginRight: SIZES.paddingHorizontal,
+        maxWidth: SIZES.gridwrapper,
     }
 }));
 
@@ -66,7 +69,11 @@ const Landing = () => {
             </div>
 
             <div className={classes.airlineGrid}>
-
+                <Grid container spacing={1}>
+                        <Grid xs={2} sm={2} md={4} lg={4}>
+                            <AirlineCards />
+                        </Grid>
+                </Grid>
             </div>
         </div>
     )
