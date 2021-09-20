@@ -24,7 +24,10 @@ const useStyles = makeStyles((theme) => ({
             cursor: 'pointer',
             border: CARDS.border,
             '& $airlineDetails': {
-                opacity: 1,
+                display: 'block',
+                alignItems: 'center',
+                marin:  'auto',
+
             },
         },
     },
@@ -77,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: SIZES.padding10 + 8,
     },
     airlineDetails: {
-       opacity: 0,
+       display: 'none',
        margin: 'auto',
 
     },

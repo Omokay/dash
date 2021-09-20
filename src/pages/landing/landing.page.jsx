@@ -6,7 +6,7 @@ import CheckboxGroup from "../../components/checkbox/checkbox.component";
 import Grid from '@mui/material/Grid';
 import AirlineCards from '../../components/airlineCards/airline.component';
 import {airlineUrl, baseUrl} from '../../httpRequests/index.http';
-// import {airliness} from '../../mock/json.api';
+// import {FixedSizeGrid} from 'react-window';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -101,12 +101,18 @@ const Landing = () => {
             <Grid container
                   direction="row"
                   justifyContent="flex-start" className={classes.airlineGrid} row>
-                {
-                    airlines && airlines.map((airline, index) => (
-
-                            <AirlineCards items {...airline} />
-                    ))
-                }
+               {/*<FixedSizeGrid  columnCount={1000}*/}
+               {/*     columnWidth={100}*/}
+               {/*     height={150}*/}
+               {/*     rowCount={1000}*/}
+               {/*     rowHeight={35}*/}
+               {/*     width={300}>*/}
+                   {
+                       airlines && airlines.map((airline, index) => (
+                           <AirlineCards items {...airline} />
+                       ))
+                   }
+               {/*</FixedSizeGrid>*/}
             </Grid>
         </div>
     )
