@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Navbar from "../../components/header/header.component";
 import {makeStyles} from "@material-ui/core/styles";
 import {COLORS, FONTS, SIZES} from '../../constants/theme/theme.constants';
 import CheckboxGroup from "../../components/checkbox/checkbox.component";
 import Grid from '@mui/material/Grid';
 import AirlineCards from '../../components/airlineCards/airline.component';
+import {airlineUrl, baseUrl} from '../../httpRequests/index.http';
+// import {airliness} from '../../mock/json.api';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -34,23 +36,51 @@ const useStyles = makeStyles((theme) => ({
     checkGroup: {
         display: 'flex',
         justifyContent: 'space-between',
+        margin: SIZES.noPadding,
+        padding: SIZES.noPadding,
 
     },
     subHeader: {
        ...FONTS.big,
        color: COLORS.text,
-       fontWeight: SIZES.normalWeight,
+       fontWeight: SIZES.bold,
        padding: SIZES.noPadding,
     },
     airlineGrid: {
         marginLeft: SIZES.paddingHorizontal,
         marginRight: SIZES.paddingHorizontal,
-        maxWidth: SIZES.gridwrapper,
-    }
+        maxWidth: SIZES.gridWrapper,
+        padding: SIZES.noPadding,
+    },
+
 }));
 
 const Landing = () => {
     const classes = useStyles();
+
+    // Initialise airline state
+    const [airlines, setAirlines] = useState([]);
+
+    // JsonP Callback Function
+     window.jsonpCallback = (json) => {
+        if (json.length < 1) {
+            return [];
+        }
+        setAirlines(json);
+        console.log(airlines);
+    }
+
+    // Create and Evaluate Script with jsonp callback
+    useEffect(() => {
+        let script = document.createElement('script');
+        script.id = 'kayakAirlines'
+        script.type = 'text/javascript';
+        script.async = true;
+        script.src = `${baseUrl}${airlineUrl}`;
+        document.body.appendChild(script);
+
+    }, []);
+
     return (
         <div className={classes.root}>
 
@@ -68,13 +98,16 @@ const Landing = () => {
                 </div>
             </div>
 
-            <div className={classes.airlineGrid}>
-                <Grid container spacing={1}>
-                        <Grid xs={2} sm={2} md={4} lg={4}>
-                            <AirlineCards />
-                        </Grid>
-                </Grid>
-            </div>
+            <Grid container
+                  direction="row"
+                  justifyContent="flex-start" className={classes.airlineGrid} row>
+                {
+                    airlines && airlines.map((airline, index) => (
+
+                            <AirlineCards items {...airline} />
+                    ))
+                }
+            </Grid>
         </div>
     )
 }

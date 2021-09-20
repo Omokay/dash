@@ -8,9 +8,9 @@ import Landing from "../pages/landing/landing.page";
 const Routes = () => {
     return (
         <Router>
-          <Route exath path='/'><Landing/></Route>
+          <Route exath path='/'><Landing /></Route>
         </Router>
     )
-}
+};
 
 export default Routes;

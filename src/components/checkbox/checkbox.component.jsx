@@ -1,20 +1,34 @@
-import * as React from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import {makeStyles} from "@material-ui/core/styles";
+import {FONTS, SIZES, CARDS} from "../../constants/theme/theme.constants";
 
 
 const useStyles = makeStyles((theme) => ({
     form: {
 
     },
-    tickSize: {
+    root: {
+      ...FONTS.small,
+      '.MuiCheckbox-root': {
+          width: SIZES.padding10 * 2,
+          height: SIZES.padding10 * 2,
+          border: CARDS.border,
+          borderRadius: SIZES.radius,
+      },
+      '.Mui-checked': {
 
-
+      },
     },
+    checkbox: {
+      marginRight: SIZES.padding10 * 2 + 4,
+      padding: SIZES.noPadding,
+    },
+
 }));
 const CheckboxGroup = () => {
     const classes =  useStyles();
@@ -40,24 +54,30 @@ const CheckboxGroup = () => {
         <Box>
             <FormControl component="fieldset" variant="standard">
 
-                <FormGroup className={classes.form} row>
+                <FormGroup row>
                     <FormControlLabel
                         control={
-                            <Checkbox className={classes.tickSize} checked={ow} onChange={handleChange} name="oneworld" />
+                            <Checkbox  classes={classes.root} size='small' checked={ow} onChange={handleChange} name="oneworld" />
                         }
-                        label="One World"
+                        classes={classes.checkbox}
+                        label="Oneworld"
+                        labelPlacement='end'
                     />
                     <FormControlLabel
                         control={
-                            <Checkbox className={classes.tickSize} checked={st} onChange={handleChange} name="skyteam" />
+                            <Checkbox classes={classes.root} size='small' checked={st} onChange={handleChange} name="skyteam" />
                         }
+                        classes={classes.checkbox}
                         label="Sky Team"
+                        labelPlacement='end'
                     />
                     <FormControlLabel
                         control={
-                            <Checkbox className={classes.tickSize} checked={sa} onChange={handleChange} name="staralliance" />
+                            <Checkbox classes={classes.root} size='small' checked={sa} onChange={handleChange} name="staralliance" />
                         }
+                        classes={classes.checkbox}
                         label="Star Alliance"
+                        labelPlacement='end'
                     />
                 </FormGroup>
             </FormControl>
