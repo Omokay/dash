@@ -67,7 +67,6 @@ const Landing = () => {
             return [];
         }
         setAirlines(json);
-        console.log(airlines);
     }
 
     // Create and Evaluate Script with jsonp callback
@@ -109,7 +108,7 @@ const Landing = () => {
                {/*     width={300}>*/}
                    {
                        airlines && airlines.map((airline, index) => (
-                           <AirlineCards items {...airline} />
+                           <AirlineCards key={index} items {...airline} />
                        ))
                    }
                {/*</FixedSizeGrid>*/}

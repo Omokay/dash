@@ -4,16 +4,24 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Logos from '../../constants/index.constants';
+import {SIZES} from "../../constants/theme/theme.constants";
 
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
-        margin: 0,
-        padding: 0,
+        margin: SIZES.noPadding,
+        padding: SIZES.noPadding,
     },
     menuButton: {
-        margin: '9px 10px',
-        padding: '10px 6px',
+        marginTop: SIZES.padding10 - 1,
+        marginBottom: SIZES.padding10 -1,
+        marginLeft: SIZES.padding10,
+        marginRight: SIZES.padding10,
+
+        paddingTop: SIZES.padding10 ,
+        paddingBottom: SIZES.padding10,
+        paddingLeft: SIZES.padding10 - 4,
+        paddingRight: SIZES.padding10 - 4,
     },
 }));
 
