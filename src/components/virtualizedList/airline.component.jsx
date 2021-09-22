@@ -3,6 +3,7 @@ import { AutoSizer, List } from "react-virtualized";
 import AirlineCards from "../airlineCards/airline.component";
 import {makeStyles} from "@material-ui/core/styles";
 import {SIZES} from "../../constants/theme/theme.constants";
+import { Grid } from '@mui/material';
 
 
 
@@ -16,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
     },
     flex: {
         display: 'flex',
+        flexWrap: 'nowrap',
     }
 
 
@@ -34,7 +36,8 @@ export const GridWrapper = ({airlines}) => {
         <div style={{ height: "100vh", maxWidth: SIZES.gridWrapper, marginLeft: SIZES.paddingHorizontal, display:'flex' }}>
             <AutoSizer>
                 {({ height, width }) => {
-                    const itemsPerRow = 4;
+                    // const itemsPerRow = 4;
+                    const itemsPerRow = Math.floor(width / (ITEM_SIZE + 4));
                     const rowCount =  Math.ceil(ITEMS_COUNT / itemsPerRow);
 
                     return (
@@ -45,13 +48,16 @@ export const GridWrapper = ({airlines}) => {
                             rowCount={rowCount}
                             rowHeight={ITEM_SIZE}
 
-                            rowRenderer={({ index, key, style={display:'flex'} }) => {
+                            rowRenderer={({ index, key, style}) => {
                                 const fromIndex = index * itemsPerRow;
                                 const toIndex = Math.min(fromIndex + itemsPerRow, ITEMS_COUNT);
                                 const items = airlines.slice(fromIndex, toIndex);
 
                                 return (
-                                    <div
+                                    <Grid
+                                        container
+                                        direction="row"
+                                        alignItems="center"
                                         className={classes.flex}
                                         key={key} style={style}>
                                         {items.map(({name, alliance, phone, site, logoURL}, index) => (
@@ -66,7 +72,7 @@ export const GridWrapper = ({airlines}) => {
                                                 marginY={2}
                                             />
                                         ))}
-                                    </div>
+                                    </Grid>
                                 );
 
                             }}

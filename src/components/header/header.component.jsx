@@ -31,7 +31,7 @@ const Navbar = () => {
         <div className={classes.root}>
             <AppBar elevation={1}
                     position="static"
-                    color="white">
+                    color="default">
                 <Toolbar >
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                     <img src={Logos.kayak} alt='Kayak'/>

@@ -98,6 +98,7 @@ const Landing = () => {
         }
         else if (airlines.length < 1) {
             setAirlines(json);
+            setGrid(json);
             sortAlliance(json);
         }
     }
