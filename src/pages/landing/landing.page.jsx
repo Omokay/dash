@@ -113,18 +113,21 @@ const Landing = () => {
 
     }, []);
 
+    const changeGrid = () => {
+        const active = (ow && !sa && !st) ? oneworld :
+            (st && !ow && !sa) ? skyteam :
+                (sa && !ow && !st) ? staralliance :
+                    (ow && st && !sa) ?
+                        oneworld.concat(skyteam) :
+                        (ow && sa && !st) ? oneworld.concat(staralliance) :
+                            (st && sa && !ow) ? staralliance.concat(skyteam) :
+                                (ow && sa && st) ? [...oneworld, ...skyteam, ...staralliance] : airlines
+        setGrid(active)
+    };
+
     // Updating list to display
     useEffect(()=> {
-        const active = (ow) ?
-            oneworld :
-            (st) ?
-                skyteam : (sa) ?
-                staralliance : (ow && st) ?
-                    [oneworld.concat(skyteam)] :
-                    (ow && sa) ? oneworld.concat(staralliance) :
-                        (st && sa) ? staralliance.concat(skyteam) :
-                            (ow && st && sa && st) ? [...oneworld, ...skyteam, ...staralliance] : airlines
-        setGrid(active)
+       changeGrid();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ow, sa, st]);
 
@@ -143,7 +146,7 @@ const Landing = () => {
                 </div>
             </div>
 
-            <GridWrapper airlines={airlines} />
+            <GridWrapper airlines={activeGrid} />
 
             {/*<Grid container*/}
             {/*      direction="row"*/}
