@@ -5,46 +5,67 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import {makeStyles} from "@material-ui/core/styles";
-import {FONTS, SIZES, CARDS} from "../../constants/theme/theme.constants";
-import { pink } from '@mui/material/colors';
+import {FONTS, COLORS, SIZES, CARDS} from "../../constants/theme/theme.constants";
+import DoneAllIcon from '@mui/icons-material/DoneAll';
 
 
 
 const useStyles = makeStyles((theme) => ({
-    form: {
 
-    },
     root: {
-        color: 'orange',
-     '&.Mui-checked': {
-          color: pink[600],
-      },
-      '&.MuiCheckbox-root': {
-          width: SIZES.padding10 * 2,
-          height: SIZES.padding10 * 2,
-          border: CARDS.border,
-          borderRadius: SIZES.radius,
-
-      },
-        '&.MuiFormControlLabel-label': {
-            ...FONTS.small,
-        },
-      '&.css-ahj2mt-MuiTypography-root': {
-          ...FONTS.small,
-      },
-    },
-    checkboxWrapper: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      marginRight: SIZES.padding10 * 2 + 4,
-      padding: SIZES.noPadding,
-      borderRadius: SIZES.radius
-    },
-    checkboxText: {
+       ...FONTS.small,
+        marginRight: '84px',
 
     },
+    checkbox: {
+        width: '20px',
+        height: '20px',
+        border: `1px solid ${COLORS.lightText}`,
+        borderRadius: SIZES.checkbox,
+        marginRight: SIZES.padding10,
+        display: 'flex',
+        alignItems: 'center',
+        alignContent: 'center',
+    },
+    checked: {
+        width: '20px',
+        height: '20px',
+        border: `1px solid ${COLORS.lightText}`,
+        borderRadius: SIZES.checkbox,
+        marginRight: SIZES.padding10,
 
+        display: 'flex',
+        alignItems: 'center',
+        alignContent: 'center',
+    },
+    checkboxMargin: {
+        marginRight: SIZES.padding10 * 2 + 4,
+        ...FONTS.small,
+    },
 }));
+
+
+
+// Unchecked Checkbox
+export const CustomCheckbox = () => {
+    const classes = useStyles();
+    return (
+        <div className={classes.checkbox}>
+        </div>
+    )
+}
+
+// Checked Checkbox
+export const Checkedbox = () => {
+    const classes = useStyles();
+    return (
+        <div className={classes.checked}>
+            <DoneAllIcon style={{fontSize: '18px', color: '#ff6701'}}/>
+        </div>
+    )
+}
+
+// CheckBox Group
 const CheckboxGroup = () => {
     const classes =  useStyles();
 
@@ -70,31 +91,40 @@ const CheckboxGroup = () => {
                 <FormGroup row>
                     <FormControlLabel
                         control={
-                            <Checkbox  size='small' checked={ow} onChange={handleChange} name="ow" />
+                            <Checkbox icon={<CustomCheckbox/>} checkedIcon={<Checkedbox />} checked={ow} onChange={handleChange} name="ow" />
                         }
-                        sx={{ '& .MuiSvgIcon-root': classes.root,
-                            '&.Mui-checked': {
-                                color: pink[600],
-                            },
-                            '.css-ahj2mt-MuiTypography-root': {
+                        sx={{
+                            '& .MuiFormControlLabel-label': {
                                 ...FONTS.small,
-                            },}}
+                                marginRight: SIZES.formLabelMargin,
+                            }
+                        }}
                         label="Oneworld"
                         labelPlacement='end'
                     />
                     <FormControlLabel
                         control={
-                            <Checkbox size='small' checked={st} onChange={handleChange} name="st" />
+                            <Checkbox icon={<CustomCheckbox/>} checkedIcon={<Checkedbox />} checked={st} onChange={handleChange} name="st" />
                         }
-                        sx={{ '& .MuiSvgIcon-root': classes.root }}
+                        sx={{
+                            '& .MuiFormControlLabel-label': {
+                                ...FONTS.small,
+                                marginRight: SIZES.formLabelMargin,
+                            }
+                        }}
                         label="Sky Team"
                         labelPlacement='end'
                     />
                     <FormControlLabel
                         control={
-                            <Checkbox size='small' checked={sa} onChange={handleChange} name="sa" />
+                            <Checkbox icon={<CustomCheckbox/>} checkedIcon={<Checkedbox />} checked={sa} onChange={handleChange} name="sa" />
                         }
-                        // sx={{ '& .MuiSvgIcon-root': classes.root }}
+                        sx={{
+                            '& .MuiFormControlLabel-label': {
+                                ...FONTS.small,
+                                marginRight: SIZES.formLabelMargin,
+                            }
+                        }}
                         label="Star Alliance"
                         labelPlacement='end'
                     />

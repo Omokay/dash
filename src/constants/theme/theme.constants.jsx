@@ -17,6 +17,7 @@ export const SIZES = {
     // global sizes
     base: 8,
     radius: 8,
+    checkbox: 4,
 
     // font sizes
     header: '44px',
@@ -24,12 +25,12 @@ export const SIZES = {
     small: '14px',
 
     // font weight
-    headerWeight: 900,
+    headerWeight: 'bolder',
     bold: 'bold',
     regular: 400,
 
     // padding & margin numbers
-    paddingHorizontal: '94px',
+    paddingHorizontal: '6.5%',
     paddingConstant: '16px',
 
     gapConstant: '16px',
@@ -44,7 +45,11 @@ export const SIZES = {
     padding100: 100,
 
     // grid layout
-    gridWrapper: '1264px',
+    // gridWrapper: '1264px',
+    gridWrapper: '87%',
+
+    formLabelMargin: '8px',
+
 };
 
 

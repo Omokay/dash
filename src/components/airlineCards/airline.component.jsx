@@ -86,10 +86,10 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const AirlineCards = (data) => {
+const AirlineCards = ({name, alliance, phone, site, logoURL}) => {
+    console.log(name, alliance, phone, site, logoURL);
     const classes = useStyles();
 
-    const {name, alliance, phone, site, logoURL} = data;
     return (
         <>
             <div className={classes.card}>
@@ -100,9 +100,9 @@ const AirlineCards = (data) => {
                     <div className={classes.cardText}>
                       <p className={classes.airlineName}>{name}</p>
                      <div className={classes.airlineDetails}>
-                         {(nullChecker(alliance)) ? ( <p className={classes.airlineAlliance}>{alliance}</p>) : null}
-                         {(nullChecker(phone)) ? (<p className={classes.airlinePhone}>{phone}</p>) : null}
-                         {(nullChecker(site)) ? (<p className={classes.airlineSite}>{urlExtractorUtils(site)}</p>) : null}
+                         {/*{(nullChecker(alliance)) ? ( <p className={classes.airlineAlliance}>{alliance}</p>) : null}*/}
+                         {/*{(nullChecker(phone)) ? (<p className={classes.airlinePhone}>{phone}</p>) : null}*/}
+                         {/*{(nullChecker(site)) ? (<p className={classes.airlineSite}>{urlExtractorUtils(site)}</p>) : null}*/}
                      </div>
                     </div>
                 </div>

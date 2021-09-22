@@ -8,7 +8,6 @@ import {SIZES} from "../../constants/theme/theme.constants";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: '100%',
         margin: SIZES.noPadding,
         padding: SIZES.noPadding,
     },
@@ -30,9 +29,9 @@ const Navbar = () => {
 
     return (
         <div className={classes.root}>
-            <AppBar position="inherit"
-                    elevation={1}
-                    color="default">
+            <AppBar elevation={1}
+                    position="static"
+                    color="white">
                 <Toolbar >
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                     <img src={Logos.kayak} alt='Kayak'/>
