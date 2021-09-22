@@ -1,6 +1,4 @@
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
+import React from 'react';
 import {SIZES, FONTS, COLORS, CARDS} from '../../constants/theme/theme.constants';
 import {makeStyles} from "@material-ui/core/styles";
 import {urlExtractorUtils} from "../../utils/urlExtractor.utils";
@@ -87,7 +85,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AirlineCards = ({name, alliance, phone, site, logoURL}) => {
-    console.log(name, alliance, phone, site, logoURL);
     const classes = useStyles();
 
     return (
@@ -100,9 +97,9 @@ const AirlineCards = ({name, alliance, phone, site, logoURL}) => {
                     <div className={classes.cardText}>
                       <p className={classes.airlineName}>{name}</p>
                      <div className={classes.airlineDetails}>
-                         {/*{(nullChecker(alliance)) ? ( <p className={classes.airlineAlliance}>{alliance}</p>) : null}*/}
-                         {/*{(nullChecker(phone)) ? (<p className={classes.airlinePhone}>{phone}</p>) : null}*/}
-                         {/*{(nullChecker(site)) ? (<p className={classes.airlineSite}>{urlExtractorUtils(site)}</p>) : null}*/}
+                         {(nullChecker(alliance)) ? ( <p className={classes.airlineAlliance}>{alliance}</p>) : null}
+                         {(nullChecker(phone)) ? (<p className={classes.airlinePhone}>{phone}</p>) : null}
+                         {(nullChecker(site)) ? (<p className={classes.airlineSite}>{urlExtractorUtils(site)}</p>) : null}
                      </div>
                     </div>
                 </div>

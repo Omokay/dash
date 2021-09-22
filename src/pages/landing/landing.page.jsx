@@ -7,6 +7,7 @@ import Grid from '@mui/material/Grid';
 import AirlineCards from '../../components/airlineCards/airline.component';
 import {airlineUrl, baseUrl} from '../../httpRequests/index.http';
 import {FixedSizeGrid} from 'react-window';
+import {GridWrapper} from "../../components/virtualizedList/airline.component";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -56,6 +57,11 @@ const useStyles = makeStyles((theme) => ({
        padding: SIZES.noPadding,
        maxWidth: SIZES.gridWrapper,
     },
+    flexGrid: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        marginLeft: '2px',
+    },
 
 }));
 
@@ -89,11 +95,6 @@ const Landing = () => {
 
     }, []);
 
-    // Grid Cell
-    const Cell = useCallback(({ columnIndex, rowIndex, style }) => (
-        <AirlineCards {...airlines} row/>
-    ), []);
-
     return (
         <div className={classes.root}>
 
@@ -113,6 +114,8 @@ const Landing = () => {
                 </div>
             </div>
 
+            <GridWrapper airlines={airlines} />
+
             {/*<Grid container*/}
             {/*      direction="row"*/}
             {/*      justifyContent="flex-start"*/}
@@ -123,20 +126,6 @@ const Landing = () => {
             {/*           ))*/}
             {/*       }*/}
             {/*</Grid>*/}
-
-            <FixedSizeGrid
-                width={1264}
-                height={900}
-                columnCount={4}
-                columnWidth={300}
-                rowCount={airlines.length}
-                rowHeight={300}
-                layout='vertical'
-                className={classes.airlineGrid}
-            >
-                {Cell}
-            </FixedSizeGrid>
-
         </div>
     )
 }
