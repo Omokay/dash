@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: SIZES.radius,
         marginRight: SIZES.gapConstant,
         marginTop: SIZES.gapConstant,
+        marginLeft: '2px',
 
         '&:hover': {
             cursor: 'pointer',

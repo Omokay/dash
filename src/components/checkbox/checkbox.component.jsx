@@ -70,7 +70,7 @@ const CheckboxGroup = () => {
     const classes =  useStyles();
 
     const [state, settState] = React.useState({
-        ow: true,
+        ow: false,
         st: false,
         sa: false,
         all: true,
