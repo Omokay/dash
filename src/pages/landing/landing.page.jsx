@@ -1,13 +1,11 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import Navbar from "../../components/header/header.component";
 import {makeStyles} from "@material-ui/core/styles";
 import {COLORS, FONTS, SIZES} from '../../constants/theme/theme.constants';
 import CheckboxGroup from "../../components/checkbox/checkbox.component";
-import Grid from '@mui/material/Grid';
-import AirlineCards from '../../components/airlineCards/airline.component';
 import {airlineUrl, baseUrl} from '../../httpRequests/index.http';
-import {FixedSizeGrid} from 'react-window';
 import {GridWrapper} from "../../components/virtualizedList/airline.component";
+import {AllianceContext} from "../../context/alliance.context";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -65,23 +63,43 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-
-
 const Landing = () => {
     const classes = useStyles();
 
-    // Initialise airline state
-    const [airlines, setAirlines] = useState([]);
+    const { ow, st, sa, airlines,
+        setAirlines, oneworld, skyteam,
+        staralliance, setOneWorld,
+        setSkyTeam, setStarAlliance, activeGrid,  setGrid } = useContext(AllianceContext);
 
-
-
+    // Sort Alliances
+    const sortAlliance = (dataObject) => {
+        if (dataObject.length < 1) {
+            return [];
+        }
+        let tempOw = [], tempSt = [], tempSa = [];
+        dataObject.filter((airline) => {
+            if ((airline.alliance).toLowerCase() === 'ow')  {
+                 tempOw.push(airline);
+            }  else if ((airline.alliance).toLowerCase() === 'sa') {
+                tempSa.push(airline);
+            }  else if ((airline.alliance).toLowerCase() === 'st') {
+                 tempSt.push(airline);
+            }
+        })
+        setOneWorld(tempOw);
+        setSkyTeam(tempSt);
+        setStarAlliance(tempSa)
+    }
 
     // JsonP Callback Function
      window.jsonpCallback = (json) => {
         if (json.length < 1) {
             return [];
         }
-        setAirlines(json);
+        else if (airlines.length < 1) {
+            setAirlines(json);
+            sortAlliance(json);
+        }
     }
 
     // Create and Evaluate Script with jsonp callback
@@ -95,18 +113,29 @@ const Landing = () => {
 
     }, []);
 
+    // Updating list to display
+    useEffect(()=> {
+        const active = (ow) ?
+            oneworld :
+            (st) ?
+                skyteam : (sa) ?
+                staralliance : (ow && st) ?
+                    [oneworld.concat(skyteam)] :
+                    (ow && sa) ? oneworld.concat(staralliance) :
+                        (st && sa) ? staralliance.concat(skyteam) :
+                            (ow && st && sa && st) ? [...oneworld, ...skyteam, ...staralliance] : airlines
+        setGrid(active)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [ow, sa, st]);
+
     return (
         <div className={classes.root}>
-
             <>
              <Navbar />
             </>
-
             <div className={classes.header}>
                 <h1 className={classes.headerText}>Airlines</h1>
             </div>
-
-
             <div className={classes.filterGroup}>
                 <h3 className={classes.subHeader}>Filter by Alliances</h3>
                 <div className={classes.checkGroup}>

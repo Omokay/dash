@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
 import FormGroup from '@mui/material/FormGroup';
@@ -7,6 +7,7 @@ import Checkbox from '@mui/material/Checkbox';
 import {makeStyles} from "@material-ui/core/styles";
 import {FONTS, COLORS, SIZES, CARDS} from "../../constants/theme/theme.constants";
 import DoneAllIcon from '@mui/icons-material/DoneAll';
+import {AllianceContext} from "../../context/alliance.context";
 
 
 
@@ -45,7 +46,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-
 // Unchecked Checkbox
 export const CustomCheckbox = () => {
     const classes = useStyles();
@@ -58,6 +58,8 @@ export const CustomCheckbox = () => {
 // Checked Checkbox
 export const Checkedbox = () => {
     const classes = useStyles();
+
+
     return (
         <div className={classes.checked}>
             <DoneAllIcon style={{fontSize: '18px', color: '#ff6701'}}/>
@@ -69,21 +71,20 @@ export const Checkedbox = () => {
 const CheckboxGroup = () => {
     const classes =  useStyles();
 
-    const [state, settState] = React.useState({
-        ow: false,
-        st: false,
-        sa: false,
-        all: true,
-    });
+    const { ow, st, sa, setOw, setSt, setSa } = useContext(AllianceContext);
 
-    const { ow, st, sa } = state;
+    const oneWorldCheck = (event) => {
+       setOw(event.target.checked);
+    }
 
-    const handleChange = (event) => {
-        settState({
-            ...state,
-            [event.target.name]: event.target.checked,
-        });
-    };
+    const skyteamCheck = (event) => {
+        setSt(event.target.checked);
+    }
+
+    const starAllianceCheck = (event) => {
+        setSa(event.target.checked);
+    }
+
 
     return (
         <Box>
@@ -91,7 +92,7 @@ const CheckboxGroup = () => {
                 <FormGroup row>
                     <FormControlLabel
                         control={
-                            <Checkbox icon={<CustomCheckbox/>} checkedIcon={<Checkedbox />} checked={ow} onChange={handleChange} name="ow" />
+                            <Checkbox icon={<CustomCheckbox/>} checkedIcon={<Checkedbox />} checked={ow} onChange={oneWorldCheck} name="ow" />
                         }
                         sx={{
                             '& .MuiFormControlLabel-label': {
@@ -104,7 +105,7 @@ const CheckboxGroup = () => {
                     />
                     <FormControlLabel
                         control={
-                            <Checkbox icon={<CustomCheckbox/>} checkedIcon={<Checkedbox />} checked={st} onChange={handleChange} name="st" />
+                            <Checkbox icon={<CustomCheckbox/>} checkedIcon={<Checkedbox />} checked={st} onChange={skyteamCheck} name="st" />
                         }
                         sx={{
                             '& .MuiFormControlLabel-label': {
@@ -117,7 +118,7 @@ const CheckboxGroup = () => {
                     />
                     <FormControlLabel
                         control={
-                            <Checkbox icon={<CustomCheckbox/>} checkedIcon={<Checkedbox />} checked={sa} onChange={handleChange} name="sa" />
+                            <Checkbox icon={<CustomCheckbox/>} checkedIcon={<Checkedbox />} checked={sa} onChange={starAllianceCheck} name="sa" />
                         }
                         sx={{
                             '& .MuiFormControlLabel-label': {

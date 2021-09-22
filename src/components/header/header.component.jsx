@@ -30,7 +30,7 @@ const Navbar = () => {
     return (
         <div className={classes.root}>
             <AppBar elevation={1}
-                    position="fixed"
+                    position="static"
                     color="white">
                 <Toolbar >
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
