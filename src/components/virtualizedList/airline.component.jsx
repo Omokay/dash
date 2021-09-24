@@ -52,8 +52,8 @@ export const GridWrapper = ({airlines}) => {
                 {({ height, width }) => {
                     // const itemsPerRow = 4;
                     const itemsPerRow = Math.floor(width / (ITEM_SIZE + 4));
-                    // const rowCount =  Math.ceil(ITEMS_COUNT / itemsPerRow);
-                    const rowCount = 4;
+                    const rowCount =  Math.ceil(ITEMS_COUNT / itemsPerRow);
+
                     return (
                         <List
 
