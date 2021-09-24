@@ -16,14 +16,22 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: SIZES.gridWrapper,
     },
     flex: {
-        display: 'flex',
-        flexWrap: 'nowrap',
+        // display: 'flex',
+        marginTop: SIZES.noPadding,
+        marginBottom: SIZES.noPadding,
+        //
+        // [theme.breakpoints.down('sm')]: {
+        //     margin: 0,
+        //     '& > .MuiGrid-item': {
+        //         padding: 0,
+        //     },
+        // },
     }
 
 
 }));
 
-const ITEM_SIZE = 300;
+const ITEM_SIZE = 260;
 
 export const GridWrapper = ({airlines}) => {
     const classes = useStyles();
@@ -33,13 +41,19 @@ export const GridWrapper = ({airlines}) => {
     const ITEMS_COUNT = airlines.length;
 
     return (
-        <div style={{ height: "100vh", maxWidth: SIZES.gridWrapper, marginLeft: SIZES.paddingHorizontal, display:'flex' }}>
+        <div style={{
+            height: "100vh",
+            maxWidth: SIZES.gridWrapper,
+            marginLeft: SIZES.paddingHorizontal,
+
+            // display:'flex'
+        }}>
             <AutoSizer>
                 {({ height, width }) => {
                     // const itemsPerRow = 4;
                     const itemsPerRow = Math.floor(width / (ITEM_SIZE + 4));
-                    const rowCount =  Math.ceil(ITEMS_COUNT / itemsPerRow);
-
+                    // const rowCount =  Math.ceil(ITEMS_COUNT / itemsPerRow);
+                    const rowCount = 4;
                     return (
                         <List
 
@@ -51,25 +65,30 @@ export const GridWrapper = ({airlines}) => {
                             rowRenderer={({ index, key, style}) => {
                                 const fromIndex = index * itemsPerRow;
                                 const toIndex = Math.min(fromIndex + itemsPerRow, ITEMS_COUNT);
-                                const items = airlines.slice(fromIndex, toIndex);
+                                const items = airlines.slice(fromIndex, toIndex - 1);
 
                                 return (
                                     <Grid
+                                        // width={SIZES.gridWrapper}
+                                        width='1265px'
                                         container
                                         direction="row"
                                         alignItems="center"
                                         className={classes.flex}
-                                        key={key} style={style}>
+                                        key={key}
+                                        style={style}
+                                    >
                                         {items.map(({name, alliance, phone, site, logoURL}, index) => (
                                             <AirlineCards
+                                                items
                                                 key={index}
                                                 name={name}
                                                 alliance={alliance}
                                                 phone={phone}
                                                 site={site}
                                                 logoURL={logoURL}
-                                                marginX={2}
-                                                marginY={2}
+                                                marginX={1}
+                                                marginY={1}
                                             />
                                         ))}
                                     </Grid>
